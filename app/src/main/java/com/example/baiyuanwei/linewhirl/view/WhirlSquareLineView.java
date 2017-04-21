@@ -4,7 +4,6 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
@@ -26,10 +25,6 @@ public class WhirlSquareLineView extends View {
     private final static int DEFAULT_PAINT_WIDTH = 5;
     private final static int DEFAULT_RADIUS = 60;
     private final static float DEFAULT_LINE_SIZE_RATE = 1 / 9f;
-    public final static int LT_POSITION = 1; // 左上
-    public final static int RT_POSITION = 2; // 右上
-    public final static int RB_POSITION = 3; // 右下
-    public final static int LB_POSITION = 0; // 左下
 
     private Paint linePaint;
     private Paint rectanglePaint;
@@ -47,8 +42,6 @@ public class WhirlSquareLineView extends View {
 
     private int startX;
     private int startY;
-    private float positionOffset;
-    private float startPosition;
 
     private Path sourcePath;
     private RectF rectangleRectF;
@@ -118,8 +111,6 @@ public class WhirlSquareLineView extends View {
         pathMeasure.setPath(sourcePath, true);
         length = pathMeasure.getLength();
 
-        positionOffset = length / 4f;
-        startPosition = RT_POSITION * positionOffset;
     }
 
     @Override
@@ -194,7 +185,4 @@ public class WhirlSquareLineView extends View {
         }
     }
 
-    public void setStartPosition(int position) {
-        startPosition = position;
-    }
 }
