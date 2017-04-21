@@ -221,10 +221,10 @@ public class WhirlSquareLineViewV2 extends View {
                 startOffset = length / 4f;
                 break;
             case LEFT_BOTTOM_START:
-                startOffset = 0;
+                startOffset = length * 3 / 4f + width - 2 * radius;
                 break;
             case RIGHT_TOP_START:
-                startOffset = length / 2f;
+                startOffset = length / 4f + width - 2 * radius;
                 break;
             case RIGHT_BOTTOM_START:
                 startOffset = length * 3 / 4f;
