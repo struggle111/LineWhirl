@@ -1,40 +1,31 @@
 package com.example.baiyuanwei.linewhirl;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.example.baiyuanwei.linewhirl.view.WhirlSquareLineView;
-
 public class MainActivity extends AppCompatActivity {
 
-    private WhirlSquareLineView whirlSquareLineView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        whirlSquareLineView = (WhirlSquareLineView) findViewById(R.id.simple_line_view);
-        findViewById(R.id.start_anim_btn).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.v1_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                whirlSquareLineView.startAnim();
+                Intent intent = new Intent(MainActivity.this, FirstActivity.class);
+                startActivity(intent);
             }
         });
 
-        findViewById(R.id.cancel_anim_btn).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.v2_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                whirlSquareLineView.cancelAnim();
-            }
-        });
-
-        findViewById(R.id.end_anim_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                whirlSquareLineView.endAnim();
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                startActivity(intent);
             }
         });
     }
