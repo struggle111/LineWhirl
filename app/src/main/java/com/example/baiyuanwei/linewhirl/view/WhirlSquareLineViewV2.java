@@ -10,7 +10,6 @@ import android.graphics.PathMeasure;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.example.baiyuanwei.linewhirl.R;
@@ -23,13 +22,15 @@ import com.example.baiyuanwei.linewhirl.R;
 
 public class WhirlSquareLineViewV2 extends View {
 
+    public final static int LEFT_TOP_START = 0;     // 左上
+    public final static int LEFT_BOTTOM_START = 1;  // 左下
+    public final static int RIGHT_TOP_START = 2;    // 右上
+    public final static int RIGHT_BOTTOM_START = 3; // 右下
     private final static String TAG = WhirlSquareLineViewV2.class.getSimpleName();
-
     private final static int DEFAULT_PAINT_WIDTH = 5;
     private final static int DEFAULT_RADIUS = 60;
     private final static float DEFAULT_LINE_SIZE_RATE = 1 / 9f;
     private final static float DEFAULT_START_OFFSET = 0; // 起点偏移量
-
     private Paint linePaint;
     private Paint rectanglePaint;
 
@@ -150,11 +151,8 @@ public class WhirlSquareLineViewV2 extends View {
         dst2Path.reset();
         dst2Path.moveTo(startX, startY);
 
-        float stop = getStopD();
-        float start = getStartD(stop);
         float[] startAndStopArray = getStartAndStop();
 
-        Log.e(TAG, "line_change: stop = " + stop + ",start = " + start + ",length = " + length);
 
         if (startAndStopArray[1] > length && startAndStopArray[0] < length) {
             float newStart = 0;
@@ -177,14 +175,6 @@ public class WhirlSquareLineViewV2 extends View {
         canvas.restore();
     }
 
-    private float getStopD() {
-        float stop = startOffset;
-        stop += length * animatedValue;
-
-        return stop;
-
-    }
-
     private float[] getStartAndStop() {
 
         float[] startAndStopArray = new float[2];
@@ -202,25 +192,6 @@ public class WhirlSquareLineViewV2 extends View {
 
         return startAndStopArray;
     }
-
-    private float getStartD(float stop) {
-//        if (stop > length) {
-//            stop = length;
-//        }
-
-        float start;
-
-        if (animatedValue < DEFAULT_LINE_SIZE_RATE) {
-            start = (stop - ((DEFAULT_LINE_SIZE_RATE - Math.abs(animatedValue - DEFAULT_LINE_SIZE_RATE)) * length));
-        } else if (animatedValue > 1 - DEFAULT_LINE_SIZE_RATE) {
-            start = ((1 - 2 * DEFAULT_LINE_SIZE_RATE) + (animatedValue - (1 - DEFAULT_LINE_SIZE_RATE)) * 2) * length;
-        } else {
-            start = stop - (length * DEFAULT_LINE_SIZE_RATE);
-        }
-
-        return start;
-    }
-
 
     public void startAnim() {
         if (valueAnimator != null) {
@@ -242,6 +213,26 @@ public class WhirlSquareLineViewV2 extends View {
 
     public void setStartOffset(float offset) {
         startOffset = offset;
+    }
+
+    public void setStartOffsetType(int type) {
+        switch (type) {
+            case LEFT_TOP_START:
+                startOffset = length / 4f;
+                break;
+            case LEFT_BOTTOM_START:
+                startOffset = 0;
+                break;
+            case RIGHT_TOP_START:
+                startOffset = length / 2f;
+                break;
+            case RIGHT_BOTTOM_START:
+                startOffset = length * 3 / 4f;
+                break;
+            default:
+                startOffset = 0;
+                break;
+        }
     }
 
 }

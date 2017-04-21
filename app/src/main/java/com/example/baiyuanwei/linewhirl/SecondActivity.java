@@ -20,14 +20,11 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.second_layout);
 
         whirlSquareLineView = (WhirlSquareLineViewV2) findViewById(R.id.whirl_square_line_view);
-        whirlSquareLineView.setStartOffset(900);
-
         offsetEdit = (EditText) findViewById(R.id.offset_edit);
 
-        findViewById(R.id.start_anim_btn).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.sure_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String offset = offsetEdit.getText().toString();
                 float off;
                 if (TextUtils.isEmpty(offset)) {
@@ -38,7 +35,13 @@ public class SecondActivity extends AppCompatActivity {
 
                 whirlSquareLineView.setStartOffset(off);
                 offsetEdit.setText(null);
+                whirlSquareLineView.startAnim();
+            }
+        });
 
+        findViewById(R.id.start_anim_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 whirlSquareLineView.startAnim();
             }
         });
@@ -54,6 +57,35 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 whirlSquareLineView.endAnim();
+            }
+        });
+
+        findViewById(R.id.lt_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                whirlSquareLineView.setStartOffsetType(WhirlSquareLineViewV2.LEFT_TOP_START);
+                whirlSquareLineView.startAnim();
+            }
+        });
+        findViewById(R.id.rt_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                whirlSquareLineView.setStartOffsetType(WhirlSquareLineViewV2.RIGHT_TOP_START);
+                whirlSquareLineView.startAnim();
+            }
+        });
+        findViewById(R.id.rb_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                whirlSquareLineView.setStartOffsetType(WhirlSquareLineViewV2.RIGHT_BOTTOM_START);
+                whirlSquareLineView.startAnim();
+            }
+        });
+        findViewById(R.id.lb_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                whirlSquareLineView.setStartOffsetType(WhirlSquareLineViewV2.LEFT_BOTTOM_START);
+                whirlSquareLineView.startAnim();
             }
         });
     }
