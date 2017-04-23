@@ -50,4 +50,16 @@
         android:textColor="#000"
         android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/v4_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="16dp"
+        android:text="v4   （迷之追踪）"
+        android:textAllCaps="false"
+        android:textColor="#000"
+        android:textStyle="bold" />
+
 </LinearLayout>

@@ -1,7 +1,6 @@
 package com.example.baiyuanwei.linewhirl.util;
 
 import android.animation.TimeInterpolator;
-import android.util.Log;
 
 /**
  * Created by baiyuanwei on 17/4/21.
@@ -36,11 +35,6 @@ public class CustomInterpolator implements TimeInterpolator {
         nowTime[0] = DEFAULT_FIRST_TIME;
         nowTime[1] = DEFAULT_FIRST_TIME + DEFAULT_SECOND_TIME;
         nowTime[2] = DEFAULT_FIRST_TIME + DEFAULT_SECOND_TIME + DEFAULT_THIRD_TIME;
-
-        for (int i = 0; i < nowTime.length; i++) {
-            Log.e(TAG, "i = " + i + ",nowTime = " + nowTime[i]);
-        }
-
     }
 
     @Override
@@ -96,7 +90,6 @@ public class CustomInterpolator implements TimeInterpolator {
                 - ((originalTime[2] - originalTime[1]) * nowTime[1] * nowTime[1]) / (nowTime[2] * nowTime[2] - nowTime[1] * nowTime[1])
                 + b * (nowTime[2] - nowTime[1]) * nowTime[1] * nowTime[1] / (nowTime[2] * nowTime[2] - nowTime[1] * nowTime[1])
                 - b * nowTime[1];
-        Log.e(TAG, "third_time: a = " + a + ",b = " + b + ",c = " + c);
         return a * x * x + b * x + c;
 
         /**
