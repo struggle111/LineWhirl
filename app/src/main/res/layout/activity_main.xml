@@ -62,4 +62,16 @@
         android:textColor="#000"
         android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/v5_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="16dp"
+        android:text="v5    (终极大招)"
+        android:textAllCaps="false"
+        android:textColor="#000"
+        android:textStyle="bold" />
+
 </LinearLayout>
